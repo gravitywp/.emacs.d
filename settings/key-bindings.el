@@ -1,7 +1,7 @@
 ;; I don't need to kill emacs that easily
 ;; the mnemonic is C-x REALLY QUIT
-(global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
-(global-set-key (kbd "C-x C-c") 'delete-frame)
+;;(global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
+;;(global-set-key (kbd "C-x C-c") 'delete-frame)
 
 ;; Completion that uses many different methods to find options.
 (global-set-key (kbd "C-.") 'hippie-expand-no-case-fold)
@@ -34,9 +34,7 @@
 (global-set-key (kbd "C-Æ") 'mc/mark-more-like-this-extended)
 (global-set-key (kbd "M-å") 'mc/mark-all-in-region)
 
-;; Symbol and word specific mark-more
-(global-set-key (kbd "s-æ") 'mc/mark-next-word-like-this)
-(global-set-key (kbd "s-å") 'mc/mark-previous-word-like-this)
+;; Symbol and word specific mark-morecc(global-set-key (kbd "s-æ") 'mc/mark-next-word-like-thics)(global-set-key (kbd "s-å") 'mc/mark-previous-word-like-this)
 (global-set-key (kbd "M-s-æ") 'mc/mark-all-words-like-this)
 (global-set-key (kbd "s-Æ") 'mc/mark-next-symbol-like-this)
 (global-set-key (kbd "s-Å") 'mc/mark-previous-symbol-like-this)
@@ -44,6 +42,8 @@
 
 ;; Extra multiple cursors stuff
 (global-set-key (kbd "C-~") 'mc/reverse-regions)
+
+
 (global-set-key (kbd "M-~") 'mc/sort-regions)
 (global-set-key (kbd "H-~") 'mc/insert-numbers)
 
@@ -70,7 +70,7 @@
 (global-set-key (kbd "C-<f10>") 'menu-bar-mode)
 
 ;; Use shell-like backspace C-h, rebind help to F1
-(define-key key-translation-map [?\C-h] [?\C-?])
+;;(define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f1>") 'help-command)
 
 (global-set-key (kbd "M-h") 'kill-region-or-backward-word)
@@ -310,7 +310,7 @@
 (global-set-key (kbd "M-s f") 'find-name-dired)
 
 ;; Find file in project
-(global-set-key (kbd "C-x o") 'find-file-in-project)
+(global-set-key (kbd "C-c p") 'find-file-in-project)
 
 ;; Find file in project, with specific patterns
 (global-unset-key (kbd "C-x C-o")) ;; which used to be delete-blank-lines (also bound to C-c C-<return>)
