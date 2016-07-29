@@ -1,4 +1,11 @@
 ;; Turn off mouse interface early in startup to avoid momentary display
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -94,6 +101,19 @@
      cider
      yesql-ghosts
      string-edit
+     js2-mode
+     js2-refactor
+     auto-complete
+     elixir-mode
+     alchemist
+     edts
+     org-bullets
+     corral
+     ace-window
+     multiple-cursors
+     youdao-dictionary
+     ag
+     wgrep-ag
      )))
 
 (condition-case nil
@@ -116,6 +136,8 @@
 (guide-key-mode 1)
 (setq guide-key/recursive-key-sequence-flag t)
 (setq guide-key/popup-window-position 'bottom)
+
+
 
 ;; Setup extensions
 (eval-after-load 'ido '(require 'setup-ido))

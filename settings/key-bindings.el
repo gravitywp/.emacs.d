@@ -2,6 +2,23 @@
 ;; the mnemonic is C-x REALLY QUIT
 ;;(global-set-key (kbd "C-x r q") 'save-buffers-kill-terminal)
 ;;(global-set-key (kbd "C-x C-c") 'delete-frame)
+(global-unset-key (kbd "C-x o"))
+(global-set-key (kbd "C-x o") 'ace-window)
+(global-set-key (kbd "C-x 9") 'toggle-frame-fullscreen)
+
+;; Corral
+(global-unset-key (kbd "M-9"))
+(global-unset-key (kbd "M-0"))
+(global-set-key (kbd "M-9") 'corral-parentheses-backward)
+(global-set-key (kbd "M-0") 'corral-parentheses-forward)
+(global-set-key (kbd "M-[") 'corral-brackets-backward)
+(global-set-key (kbd "M-]") 'corral-brackets-forward)
+(global-set-key (kbd "M-{") 'corral-braces-backward)
+(global-set-key (kbd "M-}") 'corral-braces-forward)
+(global-unset-key (kbd "M-\""))
+(global-set-key (kbd "M-\"") 'corral-double-quotes-backward)
+(global-set-key (kbd "M-\\") 'corral-double-quotes-forward)
+
 
 ;; Completion that uses many different methods to find options.
 (global-set-key (kbd "C-.") 'hippie-expand-no-case-fold)
@@ -27,6 +44,10 @@
 (global-set-key (kbd "C-S-c C-e") 'mc/edit-ends-of-lines)
 (global-set-key (kbd "C-S-c C-a") 'mc/edit-beginnings-of-lines)
 
+;; multiple-cusors
+(global-set-key (kbd "C->") 'mc/mark-next-like-this-word)
+(global-set-key (kbd "C-<") 'mc/mark-previous-word-like-this)
+(global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
 ;; Mark additional regions matching current region
 (global-set-key (kbd "M-æ") 'mc/mark-all-dwim)
 (global-set-key (kbd "C-å") 'mc/mark-previous-like-this)
@@ -56,7 +77,7 @@
 (global-set-key (kbd "C-x r t") 'inline-string-rectangle)
 
 ;; Quickly jump in document with ace-jump-mode
-(define-key global-map (kbd "C-ø") 'ace-jump-mode)
+(define-key global-map (kbd "C-s-o") 'ace-jump-mode)
 
 ;; Perform general cleanup.
 (global-set-key (kbd "C-c n") 'cleanup-buffer)
@@ -117,7 +138,7 @@
 (global-set-key (kbd "M-Z") (lambda (char) (interactive "cZap to char: ") (zap-to-char 1 char)))
 (global-set-key (kbd "s-Z") (lambda (char) (interactive "cZap to char backwards: ") (zap-to-char -1 char)))
 
-;; iy-go-to-char - like f in Vim
+;; iy-go-to-char - like f in
 (global-set-key (kbd "M-m") 'jump-char-forward)
 (global-set-key (kbd "M-M") 'jump-char-backward)
 (global-set-key (kbd "s-m") 'jump-char-backward)
@@ -140,7 +161,7 @@
 (global-set-key (kbd "C-x f") 'recentf-ido-find-file)
 (global-set-key (kbd "C-x C-p") 'find-or-create-file-at-point)
 (global-set-key (kbd "C-x M-p") 'find-or-create-file-at-point-other-window)
-(global-set-key (kbd "C-c y") 'bury-buffer)
+;;(global-set-key (kbd "C-c y") 'bury-buffer)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "M-`") 'file-cache-minibuffer-complete)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
@@ -317,6 +338,7 @@
 (global-set-key (kbd "C-x C-o ja") (ffip-create-pattern-file-finder "*.java"))
 (global-set-key (kbd "C-x C-o js") (ffip-create-pattern-file-finder "*.js"))
 (global-set-key (kbd "C-x C-o jn") (ffip-create-pattern-file-finder "*.json"))
+(global-set-key (kbd "C-x C-o jx") (ffip-create-pattern-file-finder "*.jsx"))
 (global-set-key (kbd "C-x C-o ht") (ffip-create-pattern-file-finder "*.html"))
 (global-set-key (kbd "C-x C-o jp") (ffip-create-pattern-file-finder "*.jsp"))
 (global-set-key (kbd "C-x C-o cs") (ffip-create-pattern-file-finder "*.css"))

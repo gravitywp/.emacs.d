@@ -58,6 +58,7 @@
         hippie-expand-no-case-fold
         html-paragraph
         html-wrap-in-tag
+        ibuffer
         insert-postfix-whitespace
         js2-beginning-of-line
         js2-end-of-line
@@ -205,7 +206,9 @@
         mc/add-cursors-to-all-matches
         multiple-cursors-mode
         ns-prev-frame
+        paredit-backward-kill-word
         persp-switch
+        recentf-ido-find-file
         shell
         skewer-load-buffer
         smex
