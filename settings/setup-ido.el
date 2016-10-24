@@ -17,8 +17,8 @@
 (setq ido-use-faces nil)
 
 ;; flx-ido looks better with ido-vertical-mode
-(require 'ido-vertical-mode)
-(ido-vertical-mode)
+;;(require 'ido-vertical-mode)
+;;(ido-vertical-mode)
 
 ;; C-n/p is more intuitive in vertical layout
 (setq ido-vertical-define-keys 'C-n-C-p-up-down-left-right)

@@ -5,6 +5,9 @@
 (global-unset-key (kbd "C-x o"))
 (global-set-key (kbd "C-x o") 'ace-window)
 (global-set-key (kbd "C-x 9") 'toggle-frame-fullscreen)
+(global-set-key (kbd "C-c w u") 'winner-undo)
+(global-unset-key (kbd "M-g g"))
+(global-set-key (kbd "M-g g") 'goto-line)
 
 ;; Corral
 (global-unset-key (kbd "M-9"))
@@ -169,6 +172,7 @@
 ;; toggle two most recent buffers
 (fset 'quick-switch-buffer [?\C-x ?b return])
 (global-set-key (kbd "s-b") 'quick-switch-buffer)
+(global-set-key (kbd "C-<tab>") 'quick-switch-buffer)
 
 (global-set-key (kbd "s-y") 'bury-buffer)
 
@@ -203,7 +207,7 @@
 (global-set-key (kbd "M-s-e") 'eval-and-replace)
 
 ;; Navigation bindings
-(global-set-key [remap goto-line] 'goto-line-with-feedback)
+;;(global-set-key [remap goto-line] 'goto-line-with-feedback)
 
 (global-set-key (kbd "<prior>") 'beginning-of-buffer)
 (global-set-key (kbd "<home>") 'beginning-of-buffer)

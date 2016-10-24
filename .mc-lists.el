@@ -37,6 +37,10 @@
         clojure-forward-logical-sexp
         clojure-toggle-keyword-string
         complete-symbol
+        corral-braces-forward
+        corral-brackets-forward
+        corral-double-quotes-backward
+        corral-parentheses-forward
         cua-replace-region
         cua-set-mark
         cycle-spacing
@@ -168,6 +172,7 @@
         touch-buffer-file
         transpose-params
         transpose-sexps
+        transpose-words
         wdired-next-line
         wdired-previous-line
         wrap-region-trigger

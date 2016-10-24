@@ -5,12 +5,12 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("9527feeeec43970b1d725bdc04e97eb2b03b15be982ac50089ad223d3c6f2920" "c03d60937e814932cd707a487676875457e0b564a615c1edfd453f23b06fe879" "f3ec2da81c2b1f66f911fe47843a09055754b40fafaddcce79bbd4d781161329" "30c6aef3025cd6f05ccb611ec8838a448a14a6784987ed98b24f78916d63b388" "84ff07913c6109d12bfda40644daeaaa8f4665afb5f04e13e422bd98b02ee88b" "cf33119622dd833e4d8f904f34c5e3ff95d1d3d45bada72dd44648b3470bdebe" "f5776f3da6117901f29405fe52edb2bcba6a687629b4cbd5923d1a642484f2f9" "d56e289b10204629ac5c35b9621a650a534ef3baf183a1c601b4936482321df1" "50ceca952b37826e860867d939f879921fac3f2032d8767d646dd4139564c68a" "ff73e1b0216feca9e041dcb3196938442cc6aa8319f97eedbc2a3e38c8ca9825" "a18dd0a954ac63a80e62c8cb1b550ffcf5d8461189c7c672555faadf2facfcf3" "cb36f8e44d41595010baa23737984c4ecb2d8cc2e363ec15fbfa0408c2f8ea9f" "ea0c5df0f067d2e3c0f048c1f8795af7b873f5014837feb0a7c8317f34417b04" "9f42bccce1e13fa5017eb8718574db099e85358b9f424db78e7318f86d1be08f" default)))
+    ("88ae008e9bf586a903dfb4e7ca6d9c06f6b1f8ce10d2ae89295a4114a6f2c3f3" "9527feeeec43970b1d725bdc04e97eb2b03b15be982ac50089ad223d3c6f2920" default)))
  '(flycheck-display-errors-function (function flycheck-pos-tip-error-messages))
  '(ido-use-filename-at-point nil)
  '(package-selected-packages
    (quote
-    (wgrep-ag ag youdao-dictionary multiple-cursor ace-window corral web-mode org-bullets edts erlang-mode alchemist elixir-mode auto-complete js2-refactor debbugs js2-mode yesql-ghosts yasnippet whitespace-cleanup-mode visual-regexp string-edit smartparens simple-httpd restclient prodigy paredit nodejs-repl move-text markdown-mode magit inflections ido-vertical-mode ido-at-point hydra htmlize highlight-escape-sequences guide-key groovy-mode gist flycheck-pos-tip flycheck-clojure flx-ido fill-column-indicator exec-path-from-shell elisp-slime-nav edn dockerfile-mode dired-details css-eldoc clojure-mode-extra-font-locking)))
+    (material-theme protobuf-mode auctex tide all-the-icons doom-themes elixir-yasnippets Yasnippet go-complete go-mode go js-doc slime jade wgrep-ag wgrep wgrep-ack ruby-end ag youdao-dictionary multiple-cursor ace-window corral web-mode org-bullets edts erlang-mode alchemist elixir-mode auto-complete js2-refactor debbugs js2-mode yesql-ghosts yasnippet whitespace-cleanup-mode visual-regexp string-edit smartparens simple-httpd restclient prodigy paredit nodejs-repl move-text markdown-mode magit inflections ido-vertical-mode ido-at-point hydra htmlize highlight-escape-sequences guide-key groovy-mode gist flycheck-pos-tip flycheck-clojure flx-ido fill-column-indicator exec-path-from-shell elisp-slime-nav edn dockerfile-mode dired-details css-eldoc clojure-mode-extra-font-locking)))
  '(safe-local-variable-values
    (quote
     ((eval font-lock-add-keywords nil
@@ -48,9 +48,15 @@
  ;; If there is more than one, they won't work right.
  '(js2-error-face ((t nil)) t)
  '(js2-warning-face ((t nil)) t))
-(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
-(add-to-list 'default-frame-alist '(font . "inconsolata-dz" ))
-(set-face-attribute 'default t :font "inconsolata-dz" )
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
+;;configuration for web-mode
+(setq web-mode-content-types-alist
+      '(("jsx"  . "\\.jsx?\\'")))
+(setq web-mode-code-indent-offset 2)
+;;font config
+(add-to-list 'initial-frame-alist '(font . "Inconsolata-14" ))
+(add-to-list 'default-frame-alist '(font . "Inconsolata-14" ))
+;; (set-face-attribute 'default t :font "Inconsolata-12" )
 ;; set up org mode bullets
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
@@ -63,3 +69,86 @@
 ;; youdao
 (setq url-automatic-caching t)
 (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point)
+
+;;elixir
+;;(eval-after-load 'alchemist-mode '(require 'elixir-mode))
+
+(require 'ag)
+;; (require 'wgrep)
+;; (autoload 'wgrep-ag-setup "wgrep-ag")
+;; (add-hook 'ag-mode-hook 'wgrep-ag-setup)
+(require 'elixir-mode)
+(require 'alchemist)
+(add-hook 'alchemist-mode-hook 'company-mode)
+(add-to-list 'elixir-mode-hook
+             (defun auto-activate-ruby-end-mode-for-elixir-mode ()
+               (set (make-variable-buffer-local 'ruby-end-expand-keywords-before-re)
+                    "\\(?:^\\|\\s-+\\)\\(?:do\\)")
+               (set (make-variable-buffer-local 'ruby-end-check-statement-modifiers) nil)
+               (ruby-end-mode +1)))
+;;for golang
+(require 'go-mode-autoloads)
+(add-hook 'web-mode-hook 'electric-pair-local-mode)
+;; jade
+;;(add-hook 'js2-mode-hook #'jade-interaction-mode)
+
+;; active Babel languages
+;; (require 'ob-clojure)
+;; (setq org-babel-clojure-backend 'cider)
+;; (org-babel-do-load-languages
+;;  'org-babel-load-languages
+;;  '((R . t)
+;;    (emacs-lisp . t)
+;;    (clojure . t)
+;;    ))
+
+;; js-doc
+(require 'js-doc)
+
+;;doom themes
+;; (load-theme 'doom-one t) ;; or doom-dark, etc.
+
+;;; OPTIONAL
+;; brighter source buffers
+;; (add-hook 'find-file-hook 'doom-buffer-mode)
+;; brighter minibuffer when active
+;; (add-hook 'minibuffer-setup-hook 'doom-buffer-mode)
+
+;;Typescript for angular
+
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+
+;; formats the buffer before saving
+(add-hook 'before-save-hook 'tide-format-before-save)
+
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+;; format options
+(setq tide-format-options '(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil))
+
+;; protobuf
+(require 'protobuf-mode)
+(defconst my-protobuf-style
+  '((c-basic-offset . 2)
+    (indent-tabs-mode . nil)))
+
+(add-hook 'protobuf-mode-hook
+          (lambda () (c-add-style "my-style" my-protobuf-style t)))
+
+;; AUCTeX
+(load "auctex.el" nil t t)
+;; dired-x
+(require 'dired-x)
+(load-theme 'material t)

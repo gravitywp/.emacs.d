@@ -24,22 +24,22 @@
 (add-to-list 'load-path settings-dir)
 (add-to-list 'load-path site-lisp-dir)
 
-;; Keep emacs Custom-settings in separate file
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-(load custom-file)
+;; Add external projects to load path
+(dolist (project (directory-files site-lisp-dir t "\\w+"))
+  (when (file-directory-p project)
+    (add-to-list 'load-path project)))
 
 ;; Set up appearance early
 (require 'appearance)
+
+;; Keep emacs Custom-settings in separate file
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file)
 
 ;; Settings for currently logged in user
 (setq user-settings-dir
       (concat user-emacs-directory "users/" user-login-name))
 (add-to-list 'load-path user-settings-dir)
-
-;; Add external projects to load path
-(dolist (project (directory-files site-lisp-dir t "\\w+"))
-  (when (file-directory-p project)
-    (add-to-list 'load-path project)))
 
 ;; Write backup files to own directory
 (setq backup-directory-alist
@@ -103,6 +103,7 @@
      string-edit
      js2-mode
      js2-refactor
+     jade
      auto-complete
      elixir-mode
      alchemist
@@ -112,8 +113,15 @@
      ace-window
      multiple-cursors
      youdao-dictionary
+     wgrep
      ag
      wgrep-ag
+     ruby-end
+     slime
+     js-doc
+     doom-themes
+     tide
+     protobuf-mode
      )))
 
 (condition-case nil
@@ -215,14 +223,6 @@
 
 ;; Don't use expand-region fast keys
 (setq expand-region-fast-keys-enabled nil)
-
-;; Show expand-region command used
-(setq er--show-expansion-message t)
-
-;; Fill column indicator
-(require 'fill-column-indicator)
-(setq fci-rule-color "#111122")
-
 ;; Browse kill ring
 (require 'browse-kill-ring)
 (setq browse-kill-ring-quit-action 'save-and-restore)
